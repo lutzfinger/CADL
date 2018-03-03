@@ -114,6 +114,12 @@ Note that you can skip the build step and download from docker hub instead like 
 $ docker run -it -p 8888:8888 -p 6006:6006 -v /$(pwd)/session-1:/notebooks --name tf pkmital/cadl /bin/bash
 ```
 
+#NOTE:
+the docker run command is wrong. It should have one "/" less.
+```shell
+$ docker run -it -p 8888:8888 -p 6006:6006 -v /$(pwd)/session-1:/notebooks --name tf cadl /bin/bash
+```
+
 Be sure to replace "session-1" with whichever session you are working on, e.g. "session-2", "session-3"...  This will give you a bash prompt with the files for each session:
 
 ```bash
@@ -125,6 +131,19 @@ Which you can use to launch jupyter like so:
 
 ```bash
 root@39c4441bcde8:/notebooks# jupyter notebook --allow-root
+```
+
+#NOTE:
+we are missing in the distribution jupiter notebooks... thus we have to install it after we create an image. with the commands that are given below.
+
+```shell
+$ curl https://bootstrap.pypa.io/ez_setup.py -o - | python
+
+$ pip3 install ipython[notebook]
+$ jupyter notebook
+
+```
+```
 [I 01:45:27.712 NotebookApp] [nb_conda_kernels] enabled, 2 kernels found
 [I 01:45:27.715 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret
 [W 01:45:27.729 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
